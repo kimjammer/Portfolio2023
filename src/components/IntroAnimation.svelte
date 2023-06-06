@@ -1,7 +1,3 @@
-<script>
-
-</script>
-
 <style lang="scss">
   :root{
     --animationDuration: 2s;
@@ -18,6 +14,8 @@
 	height: 100%;
 	top: 0;
 	left: 0;
+
+	z-index: 9999;
   }
   @keyframes circlecrop {
 	0%{
