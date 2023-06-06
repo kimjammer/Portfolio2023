@@ -1,44 +1,103 @@
 <script>
-	import {onMount} from "svelte";
+	import {beforeUpdate, onMount} from "svelte";
 	//Make the metaball div match the height of the content div
-	let metaballBox;
-	let metaballContainer;
-	let backgroundbox;
+	let blobContainer;
 	let contentBox;
-	let metaballLocations = [];
+	let blobLocations = [];
 
+	//Cursor location
+	let cursorX = 0;
+	let cursorY = 0;
+
+	//Blob related variables
+	const blobSize = 150; //Visual size must be changed in the CSS manually
+	const spreadPower = 0.5; //How aggressively the blobs spread out evenly;
+	const cursorRepulsionPower = 5; //How aggressively the blobs move away from the cursor
 
 	onMount(async ()=> {
-		$: metaballBox.style.height = `${contentBox.clientHeight}px`;
-		$: backgroundbox.style.height = `${contentBox.clientHeight}px`;
+		//Make the background (blobs) the same size as the content.
+		blobContainer.style.height = `${contentBox.clientHeight}px`;
 
-		//Make a list containing the random locations of 200 metaballs
+		//Make a list containing the random locations of 200 blobs
 		for (let i = 0; i < 200; i++) {
-			metaballLocations.push({
-				x: `${Math.random() * metaballBox.clientWidth - 200}px`,
-				y: `${Math.random() * metaballBox.clientHeight - 200}px`
+			blobLocations.push({
+				x: Math.random() * blobContainer.clientWidth - 75,
+				y: Math.random() * blobContainer.clientHeight - 75,
+				id: i,
+				element: null,
 			})
 		}
-		metaballLocations = metaballLocations;
+		blobLocations = blobLocations;
 	})
+
+	const blobAnimation = () => {
+		//For each blob in bloblocations, find its distance to the cursor
+		blobLocations.forEach((blob, index) => {
+			//Get the center screen coordinate of each blob using getBoundingClientRect
+			let blobX = blob.element.getBoundingClientRect().left + blobSize/2;
+			let blobY = blob.element.getBoundingClientRect().top + blobSize/2;
+
+			let newX;
+			let newY;
+
+			//Calculate the distance to the cursor
+			let distance = Math.sqrt(Math.pow(blobX - cursorX, 2) + Math.pow(blobY - cursorY, 2));
+			//If the distance is less than 150px, move the blob away from the cursor
+			if (distance < 150) {
+				let angle = Math.atan2(blobY - cursorY, blobX - cursorX);
+				newX = blob.x + Math.cos(angle) * cursorRepulsionPower;
+				newY = blob.y + Math.sin(angle) * cursorRepulsionPower;
+			}else{
+				//Find the blob's neighbors (within 2/3rds of its size)
+				let neighbors = blobLocations.filter((blob2, index2) => {
+					//The filtering function
+					if (index2 !== index) {
+						let distance = Math.sqrt(Math.pow(blob2.x - blob.x, 2) + Math.pow(blob2.y - blob.y, 2));
+						if (distance < blobSize * (2/3)) {
+							return true;
+						}
+					}
+					return false;
+				});
+				//If there are neighbors, move away from them slowly
+				if (neighbors.length > 0) {
+					neighbors.forEach((neighbor) => {
+						let angle = Math.atan2(blob.y - neighbor.y, blob.x - neighbor.x);
+						newX = blob.x + Math.cos(angle) * spreadPower;
+						newY = blob.y +  Math.sin(angle) * spreadPower;
+					});
+				}
+			}
+			//As long as the new coordinates are within the bounds of the container, update the blob's location
+			if (newX + blobSize/2 > 0 && newX - blobSize/2 < blobContainer.clientWidth - 150) {
+				blob.x = newX;
+			}
+			if (newY + blobSize/2 > 0 && newY - blobSize/2 < blobContainer.clientHeight - 150) {
+				blob.y = newY;
+			}
+		})
+		//Reassignment so Svelte updates the blobs in the DOM.
+		blobLocations = blobLocations;
+		window.requestAnimationFrame(blobAnimation);
+	};
+	window.requestAnimationFrame(blobAnimation);
+
+	//Keep track of where the mouse is on the screen.
+	const mouseMoveHandler = (event) => {
+		cursorX = event.clientX;
+		cursorY = event.clientY;
+	}
 </script>
 
+<svelte:window on:mousemove={mouseMoveHandler}/>
 <div class="container">
-	<!--This div houses the interactive metaballs int he background	-->
-	<div class="background" bind:this={backgroundbox}>
+	<!--This div houses the interactive blobs in the background	-->
+	<div class="background" bind:this={blobContainer}>
+		<!--The blobs	-->
+		{#each blobLocations as blob (blob.id)}
+			<div class="ball" style="top:{blob.y}px; left:{blob.x}px" bind:this={blob.element}></div>
+		{/each}
 	</div>
-		<div class="recolor">
-			<div class="metasharpening" bind:this={metaballBox}>
-				<div class="metablurring" bind:this={metaballContainer}>
-					<!--The metaballs	-->
-					{#each metaballLocations as location}
-						<div class="ball" style="top:{location.y}; left:{location.x}"></div>
-					{/each}
-				</div>
-			</div>
-		</div>
-
-
 
 	<div class="content" bind:this={contentBox}>
 		<div class="card">
@@ -58,45 +117,22 @@
 
 <style lang="scss">
 	.content {
-		border: red solid 1px;
 		display: flex;
 		flex-direction: column;
 		gap: 2em;
 		box-sizing: border-box;
 	}
-
-	.metasharpening {
-		filter: contrast(10);
-		width:100%;
-		position: absolute;
-		z-index: -1;
-		border: green solid 1px;
-		box-sizing: border-box;
-		overflow-x: clip;
-		overflow-y: visible;
-		background-color: #000000;
-	}
-	.metablurring {
-		filter: blur(15px);
-		width:100%;
-		height:100%;
-	}
-	.recolor{
-		mix-blend-mode: multiply;
-	}
 	.background {
-		background-color: #b2ff07;
 		position:absolute;
 		width: 100%;
-
-		border: blue solid 5px;
-		z-index:-10;
+		z-index:-35;
 	}
 	.ball{
-		background-color: #ffffff;
+		background-color: #b2ff7a;
 		position: absolute;
 		border-radius: 50%;
-		width: 170px;
-		height: 170px;
+		width: 150px;
+		height: 150px;
+		z-index: -50;
 	}
 </style>

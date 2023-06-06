@@ -18,7 +18,8 @@
 <div class="container" >
 
 </div>
-<div class="blurring"></div>
+<div class="weakBlurring"></div>
+<div class="strongBlurring"></div>
 <!--The dynamic metaball that follows the cursor	-->
 <div class="cursorball" bind:this={cursorball}></div>
 
@@ -30,19 +31,27 @@
 		top: 0;
 		width:100%;
 		background-color: #05081D;
-		z-index: -10;
+		z-index: -100;
 
 		height: 5000px;
 		overflow: hidden;
 	}
 
-	.blurring{
+	.strongBlurring{
 		position: fixed;
 		width: 100vw;
 		height: 100%;
-		backdrop-filter: blur(100px);
+		backdrop-filter: blur(40px);
 		z-index: -40;
 	}
+
+	.weakBlurring{
+		 position: fixed;
+		 width: 100vw;
+		 height: 100%;
+		 backdrop-filter: blur(30px);
+		 z-index: -30;
+	 }
 
 	.cursorball{
 	  position: fixed;
