@@ -125,6 +125,8 @@
 		gap: 2em;
 		box-sizing: border-box;
 		padding: 2em;
+		margin-top: -5vh;
+		margin-bottom: 25vh;
 	}
 	.card {
 		background-color: #EDF5FF7F;
