@@ -1,6 +1,6 @@
 <script>
-	import {beforeUpdate, onMount} from "svelte";
-	//Make the metaball div match the height of the content div
+	import {onMount} from "svelte";
+
 	let blobContainer;
 	let contentBox;
 	let blobLocations = [];
@@ -10,19 +10,19 @@
 	let cursorY = 0;
 
 	//Blob related variables
-	const blobSize = 150; //Visual size must be changed in the CSS manually
-	const spreadPower = 0.5; //How aggressively the blobs spread out evenly;
-	const cursorRepulsionPower = 5; //How aggressively the blobs move away from the cursor
+	const blobSize = 250; //Visual size must be changed in the CSS manually
+	const spreadPower = 0.7; //How aggressively the blobs spread out evenly;
+	const cursorRepulsionPower = 3; //How aggressively the blobs move away from the cursor
 
 	onMount(async ()=> {
 		//Make the background (blobs) the same size as the content.
 		blobContainer.style.height = `${contentBox.clientHeight}px`;
 
 		//Make a list containing the random locations of 200 blobs
-		for (let i = 0; i < 200; i++) {
+		for (let i = 0; i < 100; i++) {
 			blobLocations.push({
-				x: Math.random() * blobContainer.clientWidth - 75,
-				y: Math.random() * blobContainer.clientHeight - 75,
+				x: Math.random() * blobContainer.clientWidth - 125,
+				y: Math.random() * blobContainer.clientHeight - 125,
 				id: i,
 				element: null,
 			})
@@ -43,7 +43,7 @@
 			//Calculate the distance to the cursor
 			let distance = Math.sqrt(Math.pow(blobX - cursorX, 2) + Math.pow(blobY - cursorY, 2));
 			//If the distance is less than 150px, move the blob away from the cursor
-			if (distance < 150) {
+			if (distance < 200) {
 				let angle = Math.atan2(blobY - cursorY, blobX - cursorX);
 				newX = blob.x + Math.cos(angle) * cursorRepulsionPower;
 				newY = blob.y + Math.sin(angle) * cursorRepulsionPower;
@@ -63,16 +63,16 @@
 				if (neighbors.length > 0) {
 					neighbors.forEach((neighbor) => {
 						let angle = Math.atan2(blob.y - neighbor.y, blob.x - neighbor.x);
-						newX = blob.x + Math.cos(angle) * spreadPower;
-						newY = blob.y +  Math.sin(angle) * spreadPower;
+						newX = blob.x + Math.cos(angle) * spreadPower * (neighbors.length * 0.1);
+						newY = blob.y +  Math.sin(angle) * spreadPower * (neighbors.length * 0.1);
 					});
 				}
 			}
 			//As long as the new coordinates are within the bounds of the container, update the blob's location
-			if (newX + blobSize/2 > 0 && newX - blobSize/2 < blobContainer.clientWidth - 150) {
+			if (newX + blobSize/2 > 0 && newX - blobSize/2 < blobContainer.clientWidth - blobSize) {
 				blob.x = newX;
 			}
-			if (newY + blobSize/2 > 0 && newY - blobSize/2 < blobContainer.clientHeight - 150) {
+			if (newY + blobSize/2 > 0 && newY - blobSize/2 < blobContainer.clientHeight - blobSize) {
 				blob.y = newY;
 			}
 		})
@@ -100,15 +100,15 @@
 	</div>
 
 	<div class="content" bind:this={contentBox}>
-		<div class="card">
+		<div class="card parallaxFast">
 			<h1>Story part 1</h1>
 			<p>Some body text about some part of my life that is hopefully interesting or something i dont know lol.</p>
 		</div>
-		<div class="card">
+		<div class="card parallaxFast">
 			<h1>Story part 1</h1>
 			<p>Some body text about some part of my life that is hopefully interesting or something i dont know lol.</p>
 		</div>
-		<div class="card">
+		<div class="card parallaxFast">
 			<h1>Story part 1</h1>
 			<p>Some body text about some part of my life that is hopefully interesting or something i dont know lol.</p>
 		</div>
@@ -116,23 +116,37 @@
 </div>
 
 <style lang="scss">
+	.container {
+		margin-top: 5vh;
+	}
 	.content {
 		display: flex;
 		flex-direction: column;
 		gap: 2em;
 		box-sizing: border-box;
+		padding: 2em;
 	}
+	.card {
+		background-color: #EDF5FF7F;
+		z-index: 10;
+		padding: 1em;
+		border-radius: 1em;
+		box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+	}
+
 	.background {
 		position:absolute;
 		width: 100%;
 		z-index:-35;
+		overflow-x: clip;
+		filter: blur(30px);
 	}
 	.ball{
-		background-color: #b2ff7a;
+		background-color: #596be3;
 		position: absolute;
 		border-radius: 50%;
-		width: 150px;
-		height: 150px;
+		width: 250px;
+		height: 250px;
 		z-index: -50;
 	}
 </style>

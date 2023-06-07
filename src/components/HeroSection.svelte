@@ -3,10 +3,18 @@
 </script>
 
 <div class="container">
-	<div class="card">
-		<h1>KimJammer</h1>
-		<h1>John Kim</h1>
-		<p>I'm bla bla bla.</p>
+	<div class="card parallaxMedium">
+		<div class="content">
+			<div class="header">
+				<div >
+					<h1>KimJammer</h1>
+					<h1>John Kim</h1>
+				</div>
+				<img src="/Logo.svg" alt="KimJammer Logo">
+			</div>
+
+			<p>Developer. Student. Designer.</p>
+		</div>
 	</div>
 </div>
 
@@ -20,11 +28,47 @@
 		height: 100vh;
 	}
 	.card{
-		width: 60vw;
-		height: 60vh;
-		background-color: #FFFFFF88;
+		width: 70vw;
+		height: 50vh;
+		background-color: #EDF5FF7F;
 		z-index: 100;
 		box-sizing: border-box;
-		padding: 1em;
+		padding: 2em;
+		border-radius: 2em;
+		border: #596be3 1px solid;
+
+		opacity: 0;
+		animation: fadeIn 1s ease-in-out forwards;
+
+		transition: 0.5s ease;
+		box-shadow: 0px 0px 10px 0px #596be3;
+	}
+	.card:hover{
+		scale: 1.015;
+		box-shadow: 4px 4px 13px 0px #596be3;
+	}
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
+	.header{
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+	img{
+		width: 20vmin;
+	}
+	h1 {
+		font-size: 7vmin;
+		margin-top: 0.2em;
+	}
+	p {
+		font-size: 4vmin;
 	}
 </style>

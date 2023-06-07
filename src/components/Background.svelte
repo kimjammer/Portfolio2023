@@ -14,44 +14,30 @@
 </script>
 
 <svelte:window on:mousemove={mouseMoveHandler}/>
-
-<div class="container" >
-
-</div>
-<div class="weakBlurring"></div>
-<div class="strongBlurring"></div>
+<div class="background"></div>
+<div class="blurring"></div>
 <!--The dynamic metaball that follows the cursor	-->
 <div class="cursorball" bind:this={cursorball}></div>
 
 
 <style lang="scss">
-	.container {
-		position: absolute;
+	.background {
+		position: fixed;
 		left: 0;
 		top: 0;
 		width:100%;
+		height: 100%;
 		background-color: #05081D;
 		z-index: -100;
-
-		height: 5000px;
-		overflow: hidden;
 	}
 
-	.strongBlurring{
+	.blurring{
 		position: fixed;
 		width: 100vw;
-		height: 100%;
+		height: 100vh;
 		backdrop-filter: blur(40px);
-		z-index: -40;
+		z-index: -30;
 	}
-
-	.weakBlurring{
-		 position: fixed;
-		 width: 100vw;
-		 height: 100%;
-		 backdrop-filter: blur(30px);
-		 z-index: -30;
-	 }
 
 	.cursorball{
 	  position: fixed;
@@ -66,7 +52,7 @@
 	  top: 50%;
 	  translate: -50% -50%;
 	  border-radius: 50%;
-	  animation: idleWobble 10s infinite forwards;
+	  animation: idleWobble 20s infinite forwards;
 	  z-index: -50;
 	  overflow: hidden;
 	}
