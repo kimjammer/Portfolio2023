@@ -1,4 +1,3 @@
-
 <script>
 	import { browser } from '$app/environment';
 	import slickScroll from '../../node_modules/slickscrolljs/dist/slickscroll.es.min.js';
@@ -7,6 +6,8 @@
 	import HeroSection from "../components/HeroSection.svelte";
 	import StorySection from "../components/StorySection.svelte";
 	import ProjectCarousel from "../components/ProjectCarousel.svelte";
+	import {navigating} from "$app/stores";
+	import {onMount} from "svelte";
 
 	let scrollable;
 	//Wait 500ms then make introAnimationDone true (The curtain will have come down.)
@@ -36,7 +37,7 @@
 			]
 		});
 		scrollable.style.overflowX = "hidden";
-	}, 1200);
+	}, 500);
 </script>
 
 <IntroAnimation/>

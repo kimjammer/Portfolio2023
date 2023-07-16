@@ -1,16 +1,35 @@
 <script>
 
+import ContactChip from "./ContactChip.svelte";
 </script>
 
 <div class="container">
 	<div class="card parallaxMedium">
 		<div class="content">
 			<div class="header">
-				<div >
+				<div>
 					<h1>KimJammer</h1>
 					<h1>John Kim</h1>
 				</div>
 				<img src="/Logo.svg" alt="KimJammer Logo">
+			</div>
+
+			<div class="contacts">
+				<ContactChip link="https://github.com/kimjammer">
+					<img class="contactLogo" src="/github.svg" alt="Github">
+				</ContactChip>
+				<ContactChip link="https://discord.com/users/424546246980665344">
+					<img class="contactLogo" src="/discord.svg" alt="Discord">
+				</ContactChip>
+				<ContactChip link="https://twitter.com/kimjammer1">
+					<img class="contactLogo" src="/twitter.svg" alt="Twitter">
+				</ContactChip>
+				<ContactChip link="https://mastodon.social/@kimjammer">
+					<img class="contactLogo" src="/mastodon.svg" alt="Mastodon">
+				</ContactChip>
+				<ContactChip link="mailto:contact@kjam.anonaddy.com">
+					<img class="contactLogo" src="/email.svg" alt="Email">
+				</ContactChip>
 			</div>
 
 			<p>Developer. Student. Designer.</p>
@@ -26,6 +45,20 @@
 		align-items: center;
 		width: 100%;
 		height: 100vh;
+	}
+	.contacts{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: start;
+		gap: 1em;
+		align-items: center;
+	}
+	.contactLogo {
+		width: 70%;
+		position: relative;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 	}
 	.card{
 		width: 70vw;

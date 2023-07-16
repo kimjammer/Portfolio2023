@@ -1,92 +1,64 @@
 <style lang="scss">
-  :root{
-    --animationDuration: 2s;
-  }
+	:root{
+		--animationDuration: 1s;
+	}
 
-  .cropcircle{
-	animation: circlecrop var(--animationDuration) forwards;
-	overflow: hidden;
-	position: fixed;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
+  	.cropcircle{
+		overflow: hidden;
+		position: fixed;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
 
-	z-index: 9999;
-  }
-  @keyframes circlecrop {
-	0%{
-	  clip-path: circle(100vmax);
-	}
-	80%{
-      clip-path: circle(100vmax);
-	}
-	100%{
-	  clip-path: circle(0vmin);
-	}
-  }
+		z-index: 9999;
+  	}
 
-  .container {
-	width: 100vmin;
-	height: 100vmin;
-	animation: logo-shrink var(--animationDuration) forwards;
-  }
-  @keyframes logo-shrink {
-	0% {
-      width: 100vmin;
-      height: 100vmin;
-    }
-	80%{
-      width: 100vmin;
-      height: 100vmin;
+  	.container {
+		width: 100vmin;
+		height: 100vmin;
 	}
-	100%{
-      width: 0;
-      height: 0;
-	}
-  }
 
-  svg {
-	width: 100%;
-	height: 100%;
-  }
+  	svg {
+		width: 100%;
+		height: 100%;
+  	}
 
-  .curtain {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 200vh;
-	border-radius: 0 0 20vw 20vw;
-	z-index: -1;
-	background: #596BE3;
-	animation: background-move var(--animationDuration) forwards;
-  }
+  	.curtain {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 200vh;
+		border-radius: 0 0 20vw 20vw;
+		z-index: -1;
+		background: #596BE3;
+		animation: background-move var(--animationDuration)  forwards;
+  	}
 
-  @keyframes background-move {
-	0% {
-      transform: translateY(-200%);
-    }
-	60%{
-	  transform: translateY(0%);
-	}
-	100% {
-	  transform: translateY(0%);
-	}
-  }
+  	@keyframes background-move {
+		0% {
+      		transform: translateY(-200%);
+    	}
+		100% {
+	  		transform: translateY(0%);
+		}
+  	}
 
   .k-left-fill{
     transform: translateY(100%);
-    animation: k-left-fill-move var(--animationDuration) forwards;
+    animation: k-left-fill-move var(--animationDuration) infinite forwards;
+	  animation-direction: alternate;
   }
-  
+
   #k-left-clipping-mask{
-	animation: k-left-mask-move var(--animationDuration) forwards;
+	animation: k-left-mask-move var(--animationDuration) infinite forwards;
+	  animation-direction: alternate;
   }
-  
+
   @keyframes k-left-fill-move {
 	20% {
 	  transform: translateY(100%);
@@ -112,12 +84,14 @@
 
   .k-upper-fill{
     transform: translate(58.5%, -60%);
-  	animation: k-upper-fill-move var(--animationDuration) forwards;
+  	animation: k-upper-fill-move var(--animationDuration) forwards infinite;
+	  animation-direction: alternate;
   }
   #k-upper-clipping-mask{
-	animation: k-upper-mask-move var(--animationDuration) forwards;
+	animation: k-upper-mask-move var(--animationDuration) forwards infinite;
+	  animation-direction: alternate;
   }
-  
+
   @keyframes k-upper-fill-move {
 	20% {
 	  transform: translate(58.5%, -60%);
@@ -143,12 +117,14 @@
 
   .k-lower-fill{
 	transform: translate(39%, 60%);
-	animation: k-lower-fill-move var(--animationDuration) forwards;
+	animation: k-lower-fill-move var(--animationDuration) forwards infinite;
+	  animation-direction: alternate;
   }
   #k-lower-clipping-mask{
-	animation: k-lower-mask-move var(--animationDuration) forwards;
+	animation: k-lower-mask-move var(--animationDuration) forwards infinite;
+	  animation-direction: alternate;
   }
-  
+
   @keyframes k-lower-fill-move {
 	20% {
 	  transform: translate(39%, 60%);
@@ -174,12 +150,14 @@
 
   .j-upper-fill{
 	transform: translateY(-67%);
-	animation: j-upper-fill-move var(--animationDuration) forwards;
+	animation: j-upper-fill-move var(--animationDuration) forwards infinite;
+	  animation-direction: alternate;
   }
   #j-upper-clipping-mask{
-	animation: j-upper-mask-move var(--animationDuration) forwards;
+	animation: j-upper-mask-move var(--animationDuration) forwards infinite;
+	  animation-direction: alternate;
   }
-  
+
   @keyframes j-upper-fill-move {
 	20% {
 	  transform: translateY(-67%);
@@ -202,11 +180,12 @@
       transform: translateY(21.5%);
     }
   }
-  
+
   .j-lower-fill{
-	animation: j-lower-fill-move var(--animationDuration) forwards;
+	animation: j-lower-fill-move var(--animationDuration) forwards infinite;
+	  animation-direction: alternate;
   }
-  
+
   @keyframes j-lower-fill-move {
 	50% {
 	  transform: rotate(0deg);
@@ -221,7 +200,8 @@
 
   .shadow{
 	opacity: 0;
-	animation: shadow-move var(--animationDuration) forwards;
+	animation: shadow-move var(--animationDuration) forwards infinite;
+	  animation-direction: alternate;
   }
   @keyframes shadow-move {
 	60% {
@@ -236,13 +216,50 @@
   }
 </style>
 
+<script>
+	import {onMount} from "svelte";
+	let cropcircle;
+	let container;
+	let pageReady = false;
 
-<div class="cropcircle">
+
+	//When the page loads, animate the cropcircle and logo shrink
+	onMount(() => {
+		pageReady = true;
+	})
+
+	//Every 1 second, check if page has loaded
+	const pageLoadCheck = setInterval(() => {
+		//If page has loaded, animate the cropcircle and logo shrink
+		if (pageReady) {
+			cropcircle.animate([
+				{clipPath: "circle(100vmax)"},
+				{clipPath: "circle(0vmin)"}
+			], {
+				duration: 1000,
+				easing: "ease",
+				fill: "forwards"
+			});
+			container.animate([
+				{width: "100vmin", height: "100vmin"},
+				{width: "0vmin", height: "0vmin"}
+			], {
+				duration: 1000,
+				easing: "ease",
+				fill: "forwards"
+			})
+			//Clear interval after it has run once
+			clearInterval(pageLoadCheck);
+		}
+	}, 1000);
+</script>
+
+<div class="cropcircle" bind:this={cropcircle}>
 
 	<div class="curtain">
 	</div>
 
-	<div class="container">
+	<div class="container" bind:this={container}>
 		<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
 			<style type="text/css">
 				.background{fill:#596BE300;}
@@ -267,12 +284,6 @@
 					<polygon class="shadow" points="500,222.9 500,500 247,500 99.8,352.8 104.7,347.9 104.7,241 127.5,224.2 132.2,106.4 197.9,172.1
 					286.8,106.4 378.2,197.7 383.5,106.4"/>
 			</g>
-				<!--		<rect x="99.8" y="106.4" class="white" width="32.4" height="246.4"/>-->
-				<!--		<polygon class="white" points="286.8,106.4 286.8,109.1 195.3,203.2 173.8,226.3 132.2,268.3 132.2,227.7 251.5,106.4 "/>-->
-				<!--		<polygon class="white" points="290.8,350 290.8,352.8 255.8,352.8 173.8,226.3 195.3,203.2 "/>-->
-				<!--		<path class="white" d="M383.5,331.8v4.8c0,28.6-17.9,60-44.9,72.7c-10.9,5.2-24.1,6.9-36.1,6.9c-6.1,0.1-12.2-1-17.9-3.1l5.8-24.5-->
-				<!--		c10.2,2.8,26.3,0.3,37.9-4.8c18.2-9,22.2-32.7,22.2-52H383.5z"/>-->
-				<!--		<rect x="350.6" y="106.4" class="white" width="32.8" height="225.4"/>-->
 
 				<g>
 				<clipPath id="k-left-clipping-mask">
