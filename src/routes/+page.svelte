@@ -20,24 +20,30 @@
 		if (!browser) return;
 		let slick = new slickScroll({
 			root: "#scrollable",
-			offsets: [
-				{
-					element: ".parallaxFast",
-					speedY: 0.9 // Vertical speed
-				},
-				{
-					element: ".parallaxMedium",
-					speedY: 0.8 // Vertical speed
-				},
-				{
-					element: ".parallaxSlow",
-					speedY: 0.7 // Vertical speed
-				}
-			]
+			// offsets: [
+			// 	{
+			// 		element: ".parallaxFast",
+			// 		speedY: 0.9 // Vertical speed
+			// 	},
+			// 	{
+			// 		element: ".parallaxMedium",
+			// 		speedY: 0.8 // Vertical speed
+			// 	},
+			// 	{
+			// 		element: ".parallaxSlow",
+			// 		speedY: 0.7 // Vertical speed
+			// 	}
+			// ]
 		});
 		scrollable.style.overflowX = "hidden";
 	}, 500);
 </script>
+
+<svelte:head>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</svelte:head>
 
 <IntroAnimation/>
 <!--Only show if the intro animation is done playing-->
@@ -65,6 +71,9 @@
 		height: 0;
 	}
 	:global(h1) {
+		font-family: 'Manrope', sans-serif;
+	}
+	:global(h2) {
 		font-family: 'Manrope', sans-serif;
 	}
 	:global(p) {

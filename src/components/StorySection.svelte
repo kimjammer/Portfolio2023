@@ -1,6 +1,5 @@
 <script>
 	import {onMount} from "svelte";
-	import ProjectCarousel from "./ProjectCarousel.svelte";
 
 	let blobContainer;
 	let contentBox;
@@ -108,15 +107,15 @@
 		</div>
 		<div class="card parallaxFast">
 			<h1>Across Languages,</h1>
-			<p>Some body text about some part of my life that is hopefully interesting or something i dont know lol.</p>
+			<p>I've dabbled with a bunch of languages and frameworks and stuff, also bilingual haha funny</p>
 		</div>
 		<div class="card parallaxFast">
 			<h1>Over Borders,</h1>
-			<p>Some body text about some part of my life that is hopefully interesting or something i dont know lol.</p>
+			<p>I have lived in so many places like around the world omg so travel much experience so cool right plz hire me</p>
 		</div>
 		<div class="card parallaxFast">
 			<h1>& Fueled by Curiosity</h1>
-			<p>Some body text about some part of my life that is hopefully interesting or something i dont know lol.</p>
+			<p>Always looking to grow and learn more, fascinated by possibilities in front of us every day.</p>
 		</div>
 	</div>
 </div>
@@ -143,11 +142,11 @@
 		justify-self: center;
 
 		transition: 0.5s ease;
-		box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+		box-shadow: 0 0 10px 0 rgba(0,0,0,0.75);
 	}
 	.card:hover{
 		scale: 1.008;
-		box-shadow: 4px 4px 13px 0px rgba(0,0,0,0.75);
+		box-shadow: 4px 4px 13px  rgba(0,0,0,0.75);
 	}
 
 	@media (min-width:1025px) {
@@ -191,5 +190,15 @@
 		width: 250px;
 		height: 250px;
 		z-index: -50;
+	}
+
+	h1 {
+		margin:0;
+		font-size: 2em;
+		line-height: 1.4em;
+	}
+	p {
+		font-size: 1.2em;
+		line-height: 1.44em;
 	}
 </style>
