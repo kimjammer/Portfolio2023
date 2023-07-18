@@ -131,20 +131,36 @@
 
 	<div id="image-track" bind:this={track}>
 		<ProjectPage >
-			<img class="image" src="/images/1_Book.png" draggable="false" alt=""/>
-			<span slot="title">Title 1</span>
-			<span slot="description">Description 1</span>
+			<img class="image" src="/images/1_Scouting.png" draggable="false" alt="Screenshot of Scouting UI"/>
+			<span slot="title">Scouting</span>
+			<span slot="description">Track the statistics of robotics teams as they play, and know who you're up against.</span>
+			<span slot="chip1"><img class="icon" src="/icons/svelte.svg" draggable="false" alt="Svelte Logo"></span>
 		</ProjectPage>
 		<ProjectPage >
-			<img class="image" src="/images/2_OmoriSpace.png" draggable="false" alt=""/>
-			<span slot="title">Title 2</span>
-			<span slot="description">Description 2</span>
+			<img class="image" id="diriImg" src="/images/2_Diri.png" draggable="false" alt="Logo of the Diri bot."/>
+			<span slot="title">Diri</span>
+			<span slot="description">Ask questions, retrieve mars photos, or play music with this Discord bot.</span>
+			<span slot="chip1"><img class="icon" src="icons/javascript.svg" alt="Javascript Logo"/></span>
+			<span slot="chip2"><img class="icon" src="icons/linux.svg" alt="Linux Logo"/></span>
 		</ProjectPage>
 		<ProjectPage >
-			<img class="image" src="/images/3_Key.png" draggable="false" alt=""/>
+			<img class="image" src="/images/3_Robotics.jpg" draggable="false" alt="Picture of team pushing our robot."/>
+			<span slot="title">Robotics</span>
+			<span slot="description">Take advantage of the precise autonomous routines and specialized robot controls with my code.</span>
+			<span slot="chip1"><img class="icon" src="icons/java.svg" alt="Java Logo"/></span>
 		</ProjectPage>
 		<ProjectPage >
-			<img class="image" src="/images/4_Room.png" draggable="false" alt=""/>
+			<img class="image" src="/images/4_EvadingIt.png" draggable="false" alt="Banner image of Evading It! Green ball is moving away from 2 red spikes chasing it."/>
+			<span slot="title">Evading It!</span>
+			<span slot="description">Enjoy the calm, obstacle-avoiding, coin-collecting gameplay in this simple Unity game.</span>
+			<span slot="chip1"><img class="icon white" src="icons/unity.svg" alt="Unity Logo"/></span>
+		</ProjectPage>
+		<ProjectPage >
+			<img class="image" src="/images/5_F1Steward.png" draggable="false" alt="F1 Steward Bot Logo, F1 logo is wearing a hat with the f1 logo on it."/>
+			<span slot="title">F1 Steward Bot</span>
+			<span slot="description">Automatically get the latest F1 race results in the Discord server of your choice.</span>
+			<span slot="chip1"><img class="icon white" src="icons/javascript.svg" alt="Javascript Logo"/></span>
+			<span slot="chip2"><img class="icon white" src="icons/linux.svg" alt="Linux Logo"/></span>
 		</ProjectPage>
 	</div>
 </div>
@@ -184,6 +200,12 @@
 			opacity: 0.7;
 		}
 	}
+	.icon {
+		height: 100%;
+	}
+	.white {
+		filter: invert(100%) sepia(0%) saturate(7496%) hue-rotate(270deg) brightness(103%) contrast(102%);
+	}
 
 	#image-track {
 		display: flex;
@@ -194,5 +216,12 @@
 		transform: translate(0%, -50%);
 		align-items: center;
 		z-index: 100;
+		cursor: grab;
+	}
+	#image-track:active {
+		cursor: grabbing;
+	}
+	#diriImg {
+		background-color: #596be3;
 	}
 </style>
