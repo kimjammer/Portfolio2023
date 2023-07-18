@@ -1,5 +1,6 @@
 <script>
 	import {onMount} from "svelte";
+	import ProjectCarousel from "./ProjectCarousel.svelte";
 
 	let blobContainer;
 	let contentBox;
@@ -101,15 +102,20 @@
 
 	<div class="content" bind:this={contentBox}>
 		<div class="card parallaxFast">
-			<h1>Story part 1</h1>
+			<h1>Hi, I'm KimJammer</h1>
+			<p>I'm a somebody who does stuff for some reason and stuff like that and other text that will go here.</p>
+			<h1>A developer</h1>
+		</div>
+		<div class="card parallaxFast">
+			<h1>Across Languages,</h1>
 			<p>Some body text about some part of my life that is hopefully interesting or something i dont know lol.</p>
 		</div>
 		<div class="card parallaxFast">
-			<h1>Story part 1</h1>
+			<h1>Over Borders,</h1>
 			<p>Some body text about some part of my life that is hopefully interesting or something i dont know lol.</p>
 		</div>
 		<div class="card parallaxFast">
-			<h1>Story part 1</h1>
+			<h1>& Fueled by Curiosity</h1>
 			<p>Some body text about some part of my life that is hopefully interesting or something i dont know lol.</p>
 		</div>
 	</div>
@@ -120,9 +126,9 @@
 		margin-top: 5vh;
 	}
 	.content {
-		display: flex;
-		flex-direction: column;
-		gap: 2em;
+		display: grid;
+
+		gap: 5em;
 		box-sizing: border-box;
 		padding: 2em;
 		margin-top: -5vh;
@@ -133,8 +139,43 @@
 		z-index: 10;
 		padding: 1em;
 		border-radius: 1em;
+		width: 90%;
+		justify-self: center;
+
+		transition: 0.5s ease;
 		box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
 	}
+	.card:hover{
+		scale: 1.008;
+		box-shadow: 4px 4px 13px 0px rgba(0,0,0,0.75);
+	}
+
+	@media (min-width:1025px) {
+		.card{
+			width: 50%;
+		}
+		.card:nth-child(1) {
+			grid-column: 1/2;
+			grid-row: 1/3;
+			justify-self: end;
+		}
+		.card:nth-child(2) {
+			grid-column: 2/end;
+			grid-row: 2/4;
+			justify-self: start;
+		}
+		.card:nth-child(3) {
+			grid-column: 1/2;
+			grid-row: 3/5;
+			justify-self: end;
+		}
+		.card:nth-child(4) {
+			grid-column: 2/end;
+			grid-row: 4/6;
+			justify-self: start;
+		}
+	}
+
 
 	.background {
 		position:absolute;
