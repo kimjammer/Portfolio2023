@@ -6,8 +6,7 @@
 	import HeroSection from "../components/HeroSection.svelte";
 	import StorySection from "../components/StorySection.svelte";
 	import ProjectCarousel from "../components/ProjectCarousel.svelte";
-	import {navigating} from "$app/stores";
-	import {onMount} from "svelte";
+	import Footer from "../components/Footer.svelte";
 
 	let scrollable;
 	//Wait 500ms then make introAnimationDone true (The curtain will have come down.)
@@ -49,6 +48,7 @@
 		<HeroSection/>
 		<StorySection/>
 		<ProjectCarousel/>
+		<Footer/>
 	</div>
 {/if}
 
