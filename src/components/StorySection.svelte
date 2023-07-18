@@ -102,20 +102,20 @@
 	<div class="content" bind:this={contentBox}>
 		<div class="card parallaxFast">
 			<h1>Hi, I'm KimJammer</h1>
-			<p>I'm a somebody who does stuff for some reason and stuff like that and other text that will go here.</p>
+			<p>I'm a CS student who has been writing code for as long as I can remember, creating projects small and big.</p>
 			<h1>A developer</h1>
 		</div>
 		<div class="card parallaxFast">
 			<h1>Across Languages,</h1>
-			<p>I've dabbled with a bunch of languages and frameworks and stuff, also bilingual haha funny</p>
+			<p>Over the years, I've learned Javascript, Python, C++, C#, and other related tech. I'm also fluent in English and Korean, and learning French.</p>
 		</div>
 		<div class="card parallaxFast">
 			<h1>Over Borders,</h1>
-			<p>I have lived in so many places like around the world omg so travel much experience so cool right plz hire me</p>
+			<p>I have lived all across the globe, making friends in Italy, Saudi Arabia, South Korea, and the US.</p>
 		</div>
 		<div class="card parallaxFast">
 			<h1>& Fueled by Curiosity</h1>
-			<p>Always looking to grow and learn more, fascinated by possibilities in front of us every day.</p>
+			<p>I am always looking to grow and learn, fascinated every day by the possibilities in front of us every day.</p>
 		</div>
 	</div>
 </div>
