@@ -27,7 +27,7 @@ import ContactChip from "./ContactChip.svelte";
 				<ContactChip link="https://mastodon.social/@kimjammer">
 					<img class="contactLogo" src="/mastodon.svg" alt="Mastodon">
 				</ContactChip>
-				<ContactChip link="mailto:contact@kjam.anonaddy.com">
+				<ContactChip link="mailto:contact@kimjammer.com">
 					<img class="contactLogo" src="/email.svg" alt="Email">
 				</ContactChip>
 			</div>
