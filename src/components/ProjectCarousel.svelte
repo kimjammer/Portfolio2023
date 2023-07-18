@@ -7,6 +7,7 @@
 	let percentage = 0;
 	export let nextPercentage = 0;
 	let prevPercentage = 0;
+	let prevNormPercentage;
 	const normalWidth = 40;
 	const gapWidth = 4;
 
@@ -42,15 +43,24 @@
 		//Normalize the percentage to the firstPageLocation and lastPageLocation
 		let normPercentage = ((nextPercentage + 100)/(0 + 100)) * (firstPageLocation - lastPageLocation) + lastPageLocation;
 
-		track.animate({
-			transform: `translate(${normPercentage}%, -50%)`
-		}, {duration: 1200, fill: "forwards"});
+		//If the track is currently being animated, animate to next pos, otherwise, animate from last finished pos
+		if (track.getAnimations().length === 0) {
+			track.animate(
+					[
+						{transform: `translate(${prevNormPercentage}%, -50%)`},
+						{transform: `translate(${normPercentage}%, -50%)`}
+					],
+					{duration: 1200, fill: "forwards"});
+		}else {
+			track.animate({transform: `translate(${normPercentage}%, -50%)`}, {duration: 1200, fill: "forwards"});
+		}
 		Array.from(track.children).forEach(child => {
 			//Select the image element and animate.
 			child.children[0].children[0].animate({
 				objectPosition: `${normPercentage + 100}% center`
 			}, {duration: 1200, fill: "forwards"});
 		});
+		prevNormPercentage = normPercentage;
 	}
 
 	const mouseup = () => {
@@ -61,7 +71,16 @@
 	onMount(() => {
 		firstPageLocation = (normalWidth / 2) / ((track.children.length - 1) * (normalWidth + gapWidth) + normalWidth) * -100;
 		lastPageLocation = ((track.children.length -1 ) * (normalWidth + gapWidth) + normalWidth / 2) / ((track.children.length - 1) * (normalWidth + gapWidth) + normalWidth) * -100;
-	})
+		prevNormPercentage = (firstPageLocation - lastPageLocation) + lastPageLocation;
+
+		track.animate({transform: `translate(${prevNormPercentage}%, -50%)`}, {duration: 1200, fill: "forwards"});
+		Array.from(track.children).forEach(child => {
+			//Select the image element and animate.
+			child.children[0].children[0].animate({
+				objectPosition: `${prevNormPercentage + 100}% center`
+			}, {duration: 1200, fill: "forwards"});
+		});
+	});
 
 	const handleScroll = (e) => {
 		const mouseDelta = 50 * Math.sign(e.deltaY);
@@ -74,16 +93,26 @@
 		//Normalize the percentage to the firstPageLocation and lastPageLocation
 		let normPercentage = ((nextPercentage + 100)/(0 + 100)) * (firstPageLocation - lastPageLocation) + lastPageLocation;
 
-		track.animate({
-			transform: `translate(${normPercentage}%, -50%)`
-		}, {duration: 1200, fill: "forwards"});
+		//If the track is currently being animated, animate to next pos, otherwise, animate from last finished pos
+		if (track.getAnimations().length === 0) {
+			track.animate(
+				[
+					{transform: `translate(${prevNormPercentage}%, -50%)`},
+					{transform: `translate(${normPercentage}%, -50%)`}
+				],
+				{duration: 1200, fill: "forwards"});
+		}else {
+			track.animate({transform: `translate(${normPercentage}%, -50%)`}, {duration: 1200, fill: "forwards"});
+		}
 		Array.from(track.children).forEach(child => {
 			//Select the image element and animate.
 			child.children[0].children[0].animate({
 				objectPosition: `${normPercentage + 100}% center`
 			}, {duration: 1200, fill: "forwards"});
 		});
+
 		prevPercentage = nextPercentage;
+		prevNormPercentage = normPercentage;
 	}
 </script>
 
@@ -103,9 +132,13 @@
 	<div id="image-track" bind:this={track}>
 		<ProjectPage >
 			<img class="image" src="/images/1_Book.png" draggable="false" alt=""/>
+			<span slot="title">Title 1</span>
+			<span slot="description">Description 1</span>
 		</ProjectPage>
 		<ProjectPage >
 			<img class="image" src="/images/2_OmoriSpace.png" draggable="false" alt=""/>
+			<span slot="title">Title 2</span>
+			<span slot="description">Description 2</span>
 		</ProjectPage>
 		<ProjectPage >
 			<img class="image" src="/images/3_Key.png" draggable="false" alt=""/>
@@ -135,11 +168,21 @@
 
 	.image {
 		border-radius: 8px;
-		width: 40vmin;
-		height: 56vmin;
+		width: 60vmin;
+		height: 84vmin;
 		object-fit: cover;
 		object-position: 100% center;
 		opacity: 0.7;
+	}
+	@media (min-width:430px) {
+		.image {
+			border-radius: 8px;
+			width: 40vmin;
+			height: 56vmin;
+			object-fit: cover;
+			object-position: 100% center;
+			opacity: 0.7;
+		}
 	}
 
 	#image-track {
