@@ -27,7 +27,7 @@
 		top: 0;
 		width:100%;
 		height: 100%;
-		background-color: #05081D;
+		background-color: var(--color-background);
 		z-index: -100;
 	}
 
@@ -43,8 +43,8 @@
 	  position: fixed;
 	  background: linear-gradient(
 	  	to right,
-	  	#596be3,
-	  	#ffa07d
+	  	var(--color-accent),
+	  	var(--color-accent-secondary)
 	  );
 	  aspect-ratio: 1.1;
 	  height: 20vmin;

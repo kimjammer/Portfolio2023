@@ -32,9 +32,10 @@ import ContactChip from "./ContactChip.svelte";
 				<ContactChip link="mailto:contact@kimjammer.com">
 					<img class="contactLogo" src="/icons/email.svg" alt="Email">
 				</ContactChip>
+				<ContactChip link="https://kimjammer.com/misc/PGP.txt">
+					<img class="contactLogo" src="/icons/lock.svg" alt="PGP Key">
+				</ContactChip>
 			</div>
-
-
 		</div>
 	</div>
 </div>
@@ -52,22 +53,22 @@ import ContactChip from "./ContactChip.svelte";
 		position: relative;
 		width: 70vw;
 		height: 50vh;
-		background-color: #EDF5FF7F;
+		background-color: var(--color-translucent);
 		z-index: 100;
 		box-sizing: border-box;
 		padding: 2em;
 		border-radius: 2em;
-		border: #596be3 1px solid;
+		border: var(--color-accent) 1px solid;
 
 		opacity: 0;
 		animation: fadeIn 1s ease-in-out forwards;
 
-		transition: 0.5s ease;
-		box-shadow: 0 0 10px 0 #596be3;
+		transition: scale 0.5s ease, box-shadow 0.5s ease;
+		box-shadow: 0 0 10px 0 var(--color-accent);
 	}
 	.card:hover{
 		scale: 1.015;
-		box-shadow: 4px 4px 13px 0 #596be3;
+		box-shadow: 4px 4px 13px 0 var(--color-accent);
 	}
 	@media (max-height: 890px) {
 		.card {

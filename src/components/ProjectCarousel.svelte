@@ -144,13 +144,13 @@
 			<span slot="chip2"><img class="icon" src="icons/linux.svg" alt="Linux Logo"/></span>
 		</ProjectPage>
 		<ProjectPage >
-			<img class="image" src="/images/3_Robotics.jpg" draggable="false" alt="Picture of team pushing our robot."/>
+			<img class="image" src="/images/3_Robotics.jpg" draggable="false" alt="Robotics team pushing our robot."/>
 			<span slot="title">Robotics</span>
 			<span slot="description">Take advantage of the precise autonomous routines and specialized robot controls with my code.</span>
 			<span slot="chip1"><img class="icon" src="icons/java.svg" alt="Java Logo"/></span>
 		</ProjectPage>
 		<ProjectPage >
-			<img class="image" src="/images/4_EvadingIt.png" draggable="false" alt="Banner image of Evading It! Green ball is moving away from 2 red spikes chasing it."/>
+			<img class="image" src="/images/4_EvadingIt.png" draggable="false" alt="Banner graphic of Evading It! Green ball is moving away from 2 red spikes chasing it."/>
 			<span slot="title">Evading It!</span>
 			<span slot="description">Enjoy the calm, obstacle-avoiding, coin-collecting gameplay in this simple Unity game.</span>
 			<span slot="chip1"><img class="icon white" src="icons/unity.svg" alt="Unity Logo"/></span>
@@ -222,6 +222,6 @@
 		cursor: grabbing;
 	}
 	#diriImg {
-		background-color: #596be3;
+		background-color: var(--color-accent);
 	}
 </style>

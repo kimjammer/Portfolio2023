@@ -134,14 +134,14 @@
 		margin-bottom: 25vh;
 	}
 	.card {
-		background-color: #EDF5FF7F;
+		background-color: var(--color-translucent);
 		z-index: 10;
 		padding: 1em;
 		border-radius: 1em;
 		width: 90%;
 		justify-self: center;
 
-		transition: 0.5s ease;
+		transition: scale 0.5s ease, box-shadow 0.5s ease;
 		box-shadow: 0 0 10px 0 rgba(0,0,0,0.75);
 	}
 	.card:hover{
@@ -175,7 +175,6 @@
 		}
 	}
 
-
 	.background {
 		position:absolute;
 		width: 100%;
@@ -184,7 +183,7 @@
 		filter: blur(30px);
 	}
 	.ball{
-		background-color: #596be3;
+		background-color: var(--color-accent);
 		position: absolute;
 		border-radius: 50%;
 		width: 250px;

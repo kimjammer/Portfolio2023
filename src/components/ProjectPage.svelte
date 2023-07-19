@@ -9,7 +9,7 @@
 	});
 </script>
 
-<div class="wrapper" on:click>
+<div class="wrapper">
 	<span bind:this={imageWrapper}><slot></slot></span>
 	<div class="overlay">
 		<h2><slot name="title"></slot></h2>
@@ -32,7 +32,7 @@
 		bottom: 0;
 		left: 0;
 		padding: 1em;
-		background-color: #EDF5FF7F;
+		background-color: var(--color-translucent);
 		border-radius: 0.5em;
 		margin: 1em;
 		opacity: 0;

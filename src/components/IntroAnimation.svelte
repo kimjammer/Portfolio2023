@@ -260,7 +260,7 @@
 	</div>
 
 	<div class="container" bind:this={container}>
-		<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
+		<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
 			<style type="text/css">
 				.background{fill:#596BE300;}
 				.shadow{fill:#2E3D9E;clip-path:url(#shadow-clipping-mask);}
