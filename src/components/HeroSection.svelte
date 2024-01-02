@@ -23,8 +23,8 @@ import ContactChip from "./ContactChip.svelte";
 				<ContactChip link="https://discord.com/users/424546246980665344">
 					<img class="contactLogo" src="/icons/discord.svg" alt="Discord">
 				</ContactChip>
-				<ContactChip link="https://twitter.com/kimjammer1">
-					<img class="contactLogo" src="/icons/twitter.svg" alt="Twitter">
+				<ContactChip link="https://x.com/kimjammer1">
+					<img class="contactLogo" src="/icons/x.svg" alt="X (Twitter)">
 				</ContactChip>
 				<ContactChip link="https://mastodon.social/@kimjammer">
 					<img class="contactLogo" src="/icons/mastodon.svg" alt="Mastodon">
