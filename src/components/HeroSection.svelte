@@ -1,6 +1,7 @@
 <script>
 
 import ContactChip from "./ContactChip.svelte";
+import {base} from "$app/paths";
 </script>
 
 <div class="container">
@@ -11,29 +12,29 @@ import ContactChip from "./ContactChip.svelte";
 					<h1>KimJammer</h1>
 					<h1>John Kim</h1>
 				</div>
-				<img src="/icons/Logo.svg" alt="KimJammer Logo">
+				<img src="{base}/icons/Logo.svg" alt="KimJammer Logo">
 			</div>
 
 			<p>Developer. Student. Designer.</p>
 
 			<div class="contacts">
 				<ContactChip link="https://github.com/kimjammer">
-					<img class="contactLogo" src="/icons/github.svg" alt="Github">
+					<img class="contactLogo" src="{base}/icons/github.svg" alt="Github">
 				</ContactChip>
 				<ContactChip link="https://discord.com/users/424546246980665344">
-					<img class="contactLogo" src="/icons/discord.svg" alt="Discord">
+					<img class="contactLogo" src="{base}/icons/discord.svg" alt="Discord">
 				</ContactChip>
 				<ContactChip link="https://x.com/kimjammer1">
-					<img class="contactLogo" src="/icons/x.svg" alt="X (Twitter)">
+					<img class="contactLogo" src="{base}/icons/x.svg" alt="X (Twitter)">
 				</ContactChip>
 				<ContactChip link="https://mastodon.social/@kimjammer">
-					<img class="contactLogo" src="/icons/mastodon.svg" alt="Mastodon">
+					<img class="contactLogo" src="{base}/icons/mastodon.svg" alt="Mastodon">
 				</ContactChip>
 				<ContactChip link="mailto:contact@kimjammer.com">
-					<img class="contactLogo" src="/icons/email.svg" alt="Email">
+					<img class="contactLogo" src="{base}/icons/email.svg" alt="Email">
 				</ContactChip>
 				<ContactChip link="https://kimjammer.com/misc/PGP.txt">
-					<img class="contactLogo" src="/icons/lock.svg" alt="PGP Key">
+					<img class="contactLogo" src="{base}/icons/lock.svg" alt="PGP Key">
 				</ContactChip>
 			</div>
 		</div>
